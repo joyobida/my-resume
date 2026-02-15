@@ -11,7 +11,7 @@ on:
 jobs:
 
   build:
-  
+
     runs-on: ubuntu-latest
 
     steps:
@@ -25,4 +25,4 @@ jobs:
     -name: Tag image 
     run: docker tag my-image-name:${{github.run_number}} ${{secrets.REGIS_U}}/my-image-name:${{github.run_number}}
     -name: Push image
-    run: docker push ${{secrets.RESGIS_U}}/my-image-name:${{github.run_number}}
+    run: docker push ${{secrets.REGIS_U}}/my-image-name:${{github.run_number}}
