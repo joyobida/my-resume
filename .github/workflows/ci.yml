@@ -23,5 +23,5 @@ jobs:
     run: docker login -u ${{secrets.REGIS_U}} -p {{secrets.REGIS_P}}
     -name: Tag image 
     run: docker tag my-image-name:${{github.run_number}} ${{secrets.REGIS_U}}/my-image-name:${{github.run_number}}
-    - name: Push image
+    -name: Push image
     run: docker push ${{secrets.RESGIS_U}}/my-image-name:${{github.run_number}}
