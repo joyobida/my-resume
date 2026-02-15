@@ -20,6 +20,5 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:${{github.run_number}}
       - name: Build latest
     run: docker build . --file Dockerfile --tag my-image-name
-    -name: Login to Docker hub 
-    run: docker login -u username -p password
+    
     
