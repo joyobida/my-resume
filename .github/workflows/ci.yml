@@ -18,7 +18,9 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:${{github.run_number}}
-      - name: Build latest
-    run: docker build . --file Dockerfile --tag my-image-name
-    
-    
+    - name: Build latest
+    run: docker build . --file Dockerfile --tag my-image-name 
+    - name: Login to Docker hub 
+    run: docker login -u ${{secrets.REGIS_U}} -p {{secrets.REGIS_P}}
+  - name: Tag image 
+    run:docker tag my-image-name:${{github.run_number}} ${{secrets.REGIS_U}}/my-image-name:${{github.run_number}}
