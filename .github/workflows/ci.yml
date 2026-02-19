@@ -40,7 +40,7 @@ jobs:
          host:  3.91.170.238
          username: ec2-username
          key: ${{secrets.KEY}}
-         port: $ {{secrets.PORT}}
+         
          script:
               docker stop resume || echo ""
               docker rm resume || echo ""
