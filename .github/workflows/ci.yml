@@ -42,9 +42,9 @@ jobs:
          key: ${{secrets.KEY}}
          port: $ {{secrets.PORT}}
          script:
-         docker stop resume 
-         docker rm resume 
-         docker run -d --name resume ${{ secrets.REGIS_U }}/my-image-name:${{ github.run_number }}
+              docker stop resume || echo ""
+              docker rm resume || echo ""
+              docker run -d --name resume-p 8080:5001 ${{ secrets.REGIS_U }}/my-image-name:${{ github.run_number }}
 
 
 
