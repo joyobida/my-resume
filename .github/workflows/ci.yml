@@ -30,7 +30,7 @@ jobs:
       - name: Push image
         run: docker push ${{ secrets.REGIS_U }}/my-image-name:${{ github.run_number }}
 
-    deploy:
+  deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
