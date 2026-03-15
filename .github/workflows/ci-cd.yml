@@ -117,6 +117,7 @@ jobs:
       - name: AWS Creds Config 
         uses: aws-actions/configure-aws-credentials@v4
         with:
+          audience: sts.amazonaws.com # Add or keep this to fix the OIDC error
           role-to-assume: ${{ env.AWS_ROLE }}
           aws-region: ${{ env.AWS_REGION }}
       
