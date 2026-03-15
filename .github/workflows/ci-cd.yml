@@ -23,7 +23,7 @@ env:
 
 jobs:
   Build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # github runner environment
     outputs:  # Define outputs for the Deploy job
       image-uri: ${{ steps.set-image.outputs.image-uri }}
     steps:
