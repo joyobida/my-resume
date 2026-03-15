@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: Resume ci Build
 
 on:
@@ -6,10 +7,21 @@ on:
   #  branches: [ "main" ]
   #pull_request:
   #  branches: [ "main" ]
+=======
+
+name: Resume CI Build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+>>>>>>> 6ef1cdb09fee4f62a4e718a21d20688e8ba5301d
 
 jobs:
 
   build:
+<<<<<<< HEAD
 
     runs-on: ubuntu-latest
 
@@ -25,11 +37,33 @@ jobs:
       run: docker tag my-image-name:${{github.run_number}} ${{secrets.REGISTRY_USERNAME}}/my-image-name:${{github.run_number}}
     - name: Push Image 
       run: docker push  ${{secrets.REGISTRY_USERNAME}}/my-image-name:${{github.run_number}}
+=======
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag my-image-name:${{ github.run_number }}
+
+      - name: Build latest
+        run: docker build . --file Dockerfile --tag my-image-name
+
+      - name: Login to Docker hub
+        run: docker login -u ${{ secrets.REGIS_U }} -p ${{ secrets.REGIS_P }}
+
+      - name: Tag image
+        run: docker tag my-image-name:${{ github.run_number }} ${{ secrets.REGIS_U }}/my-image-name:${{ github.run_number }}
+
+      - name: Push image
+        run: docker push ${{ secrets.REGIS_U }}/my-image-name:${{ github.run_number }}
+>>>>>>> 6ef1cdb09fee4f62a4e718a21d20688e8ba5301d
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
+<<<<<<< HEAD
       - name: SSH to Server 
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -40,4 +74,45 @@ jobs:
               docker stop resume || echo ""
               docker rm resume || echo ""
               docker run -d --name resume -p 8080:5001 ${{secrets.REGISTRY_USERNAME}}/my-image-name:${{github.run_number}}
+=======
+      - name: SSH to Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{secrets.HOST}}
+          username: ${{vars.USERNAME}}
+          key: ${{secrets.KEY }}
+          script: |
+              docker stop resume || echo ""
+              docker rm resume || echo ""
+              docker run -d --name resume -p 8080:5001 ${{ secrets.REGIS_U }}/my-image-name:${{ github.run_number }}
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 6ef1cdb09fee4f62a4e718a21d20688e8ba5301d
 
